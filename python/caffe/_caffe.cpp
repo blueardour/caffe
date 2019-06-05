@@ -106,7 +106,7 @@ void CheckContiguousArray(PyArrayObject* arr, string name,
 }
 
 // Net constructor
-shared_ptr<Net<Dtype> > Net_Init(string network_file, int phase,
+shared_ptr<Net<Dtype> > Net_Init(char * network_file, int phase,
     const int level, const bp::object& stages,
     const bp::object& weights) {
   CheckFile(network_file);
@@ -135,7 +135,7 @@ shared_ptr<Net<Dtype> > Net_Init(string network_file, int phase,
 
 // Legacy Net construct-and-load convenience constructor
 shared_ptr<Net<Dtype> > Net_Init_Load(
-    string param_file, string pretrained_param_file, int phase) {
+    char * param_file, char * pretrained_param_file, int phase) {
   LOG(WARNING) << "DEPRECATION WARNING - deprecated use of Python interface";
   LOG(WARNING) << "Use this instead (with the named \"weights\""
     << " parameter):";
@@ -150,13 +150,13 @@ shared_ptr<Net<Dtype> > Net_Init_Load(
   return net;
 }
 
-void Net_Save(const Net<Dtype>& net, string filename) {
+void Net_Save(const Net<Dtype>& net, char * filename) {
   NetParameter net_param;
   net.ToProto(&net_param, false);
-  WriteProtoToBinaryFile(net_param, filename.c_str());
+  WriteProtoToBinaryFile(net_param, filename);
 }
 
-void Net_SaveHDF5(const Net<Dtype>& net, string filename) {
+void Net_SaveHDF5(const Net<Dtype>& net, char * filename) {
   net.ToHDF5(filename);
 }
 
