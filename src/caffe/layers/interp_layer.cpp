@@ -107,6 +107,7 @@ STUB_GPU(InterpLayer);
 
 INSTANTIATE_CLASS(InterpLayer);
 REGISTER_LAYER_CLASS(Interp);
+//REGISTER_LAYER_CLASS(Interp);
 
 } // namespace caffe
 
